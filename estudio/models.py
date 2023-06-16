@@ -1,6 +1,7 @@
 from django.contrib.auth.models import Group, User #importa los modelos Group y user
 from django.db import models #importa los metodos necesarios para trabajar con modellos
 
+#Cargo
 STATE_CHOICES= [
     ("O", "Odontologo"),
     ("S", "Secretaria"),
@@ -34,7 +35,7 @@ class Trabajador(models.Model):
     correo = models.CharField(max_length=100, null=True, blank=True, verbose_name='Correo Trabajador')
     edad = models.CharField(max_length=100, null=True, blank=True, verbose_name='Edad Trabajador')
     direccion = models.CharField(max_length=100, null=True, blank=True, verbose_name='Direccion Trabajador')
-    state = models.CharField(max_length=1,choices=STATE_CHOICES, null=False, blank=False, default="O")  
+    state = models.CharField(max_length=1,choices=STATE_CHOICES, null=False, blank=False, default="O")  #Cargo
     created = models.DateTimeField(auto_now_add=True,verbose_name='Fecha Creación')
     updated = models.DateTimeField(auto_now=True,verbose_name='Fecha Actualización')
     class Meta:
@@ -55,12 +56,3 @@ class Cita(models.Model):
     extra = models.CharField(max_length=100, null=True, blank=True, verbose_name='Extra Paciente')
     estado = models.CharField(max_length=100, null=True, blank=True, default='Activo', verbose_name='Estado')
 
-class Cargo(models.Model):
-    nombre = models.CharField(max_length=100, null=True, blank=True, verbose_name='Nombre Cargo')
-    estado = models.CharField(max_length=100, null=True, blank=True, default='Activo', verbose_name='Estado')
-    class Meta:
-        verbose_name = 'Cargo'
-        verbose_name_plural = 'Cargo'
-        ordering = ['nombre']   
-    def __str__(self):
-        return self.nombre
