@@ -111,7 +111,7 @@ __pycache__/
 .vscode/
 media/
 core/static/core/*.xls
-electivo_2023/settings.py
-electivo_2023/urls.py
+main/settings.py
+main/urls.py
 
 restore-database

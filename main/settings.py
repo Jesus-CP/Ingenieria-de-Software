@@ -83,9 +83,9 @@ DATABASES = {
     'default': {
         'HOST':'localhost',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ingsoft',
+        'NAME': 'IngSoft',
         'USER': 'postgres',
-        'PASSWORD':'24404130'
+        'PASSWORD':'CerealPremium'
     }
 }
 
