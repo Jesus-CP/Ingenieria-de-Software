@@ -25,8 +25,6 @@ class Paciente(models.Model):
     def __str__(self):
         return self.nombre
     
-
-    
 class Trabajador(models.Model):
     rut = models.CharField(max_length=100, null=True, blank=True, verbose_name='Rut Trabajador')
     nombre = models.CharField(max_length=100, null=True, blank=True, verbose_name='Nombre Trabajador')
@@ -55,5 +53,3 @@ class Cita(models.Model):
     diagnostico = models.CharField(max_length=100, null=True, blank=True, verbose_name='Diagnostico Paciente')
     extra = models.CharField(max_length=100, null=True, blank=True, verbose_name='Extra Paciente')
     estado = models.CharField(max_length=100, null=True, blank=True, default='Activo', verbose_name='Estado')
-
-
