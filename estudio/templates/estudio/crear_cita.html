@@ -1,0 +1,63 @@
+{% extends 'core/base_admin.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+<header class="mb-4">
+  <div class="row">
+    <div class="col-12 col-sm-8 mb-3">
+        <h2 class='h2 medium text-blue'>Nueva Cita</h2>
+    </div>
+    <div class="col-12 col-sm-4 mb-3">
+        <a href="{% url 'main' %}" class="button button--gray form-control">Volver</a>
+    </div>
+</header>
+
+<div class="col-md-11">
+  <div class="mb-3">
+    <div class="d-flex flex-column align-items-center align-items-lg-start">
+      <form method="post" action="{% url 'cita_save' %}">
+        {% csrf_token %}
+        <div class="col-12 col-lg-12 row row-cols-1 row-cols-md-1 g-2 p-lg-0-5">
+            {% if paciente %}
+            <div class="mb-0 col-md-12">
+              <label for="paciente">Paciente:</label>
+              <select name="paciente" class="form-control" id="paciente" style="width: 200px;" required>
+                  <option value="" disabled selected>Selecciona a un paciente</option>
+                  {% for a in paciente %}
+                    <option value="{{ a.id }}">{{ a.nombre }}</option>
+                  {% endfor %}
+              </select>
+              <div class="feedback body--small normal"></div>
+          </div>
+          {% else %}
+          <p>No hay pacientes disponibles en este momento, para crear una cita primero debe tener pacientes.</p>
+          {% endif %}
+          {% if odontologo %}
+          <div class="mb-0 col-md-12">
+            <label for="odontologo">Odontologo:</label>
+            <select name="odontologo" class="form-control" id="odontologo" style="width: 200px;" required>
+                <option value="" disabled selected>Selecciona a un odontologo</option>
+                {% for x in odontologo %}
+                  <option value="{{ x.id }}">{{ x.nombre }}</option>
+                {% endfor %}
+            </select>
+            <div class="feedback body--small normal"></div>
+        </div>
+        {% else %}
+        <p>No hay odontologos disponibles en este momento, para crear una cita primero debe haber odontologos.</p>
+        {% endif %}
+
+          
+          <div class="mb-0 col-md-12">
+            <div class="d-flex justify-content-center mb-2">
+              <div class="d-flex justify-content-center mx-0-5--custom">
+                <button type="submit" class="button">Crear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

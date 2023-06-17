@@ -1,9 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Estudio Dental</title>
-</head>
-<body>
-  <h1>Gay el que lo lea <3 </h1>
-</body>
-</html>
+{% extends 'core/base_admin.html' %}
+{% load static %}
+{% block content %}
+{% block extrahead %}
+
+{% endblock %}
+    <main role="main">
+        <div class="container col-12 mt-3">
+            <div class="col-12  mt-3 border">
+                <h3>Bienvenido {{request.user.first_name}} {{request.user.last_name}} </h3> 
+                <div class="row mt-4 mb-4">
+                    <div class="col-12 col-sm-3 mb-3">
+                        <a href="{% url 'crear_cita' %}" class="btn btn-danger form-control">Crear cita</a>               
+                    </div>
+                    <div class="col-12 col-sm-3 mb-3">
+                      <a href="{% url 'crear_odontologo' %}" class="btn btn-danger form-control">Crear odontologo</a>               
+                  </div>  
+                  <div class="col-12 col-sm-3 mb-3">
+                    <a href="{% url 'crear_paciente' %}" class="btn btn-danger form-control">Crear paciente</a>               
+                </div>            
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

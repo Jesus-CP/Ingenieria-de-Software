@@ -35,7 +35,7 @@ class Trabajador(models.Model):
     correo = models.CharField(max_length=100, null=True, blank=True, verbose_name='Correo Trabajador')
     edad = models.CharField(max_length=100, null=True, blank=True, verbose_name='Edad Trabajador')
     direccion = models.CharField(max_length=100, null=True, blank=True, verbose_name='Direccion Trabajador')
-    state = models.CharField(max_length=1,choices=STATE_CHOICES, null=False, blank=False, default="O")  #Cargo
+    state = models.CharField(max_length=1,choices=STATE_CHOICES, null=False, blank=False, default="O")
     created = models.DateTimeField(auto_now_add=True,verbose_name='Fecha Creación')
     updated = models.DateTimeField(auto_now=True,verbose_name='Fecha Actualización')
     class Meta:

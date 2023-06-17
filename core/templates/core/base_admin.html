@@ -48,30 +48,21 @@
                 </div>
             </header>
             <div class='menu'>
-                <!--=== Menu Administrador ===-->  
-                {% if template_name == 'admin_main.html' %}
-                    <a href="{% url 'admin_main' %}" class='item active'>
+
+
+                <!--=== Menu Cita ===-->  
+                {% if template_name == 'estudio/estudio.html'%}
+                    <a href="{% url 'main' %}" class='item active'>
                 {% else %}
-                    <a href="{% url 'admin_main' %}" class='item'>
+                    <a href="{% url 'main' %}" class='item'>
                 {% endif %}
                     <span class="material-icons-outlined">
-                        admin_panel_settings
+                        estudio_2
                     </span>
-                    <p class='body--small'>Administrador</p>
+                    <p class='body--small'>cita</p>
                 </a>
-                <!--=== Fin Menú Admin ===-->   
-                <!--=== Menu Ejemplos ===-->  
-                {% if template_name == 'ejemplos/ejemplos_main.html' or template_name == 'ejemplos/ejemplos_add.html' or template_name == 'ejemplos/ejemplos_habilidad_ver.html' or template_name == 'ejemplos/ejemplos_list_habilidades.html' or template_name == 'ejemplos/ejemplos_carga_masiva.html'%}
-                    <a href="{% url 'ejemplos_main' %}" class='item active'>
-                {% else %}
-                    <a href="{% url 'ejemplos_main' %}" class='item'>
-                {% endif %}
-                    <span class="material-icons-outlined">
-                        library_books
-                    </span>
-                    <p class='body--small'>Ejemplos</p>
-                </a>
-                <!--=== Fin Menú Ejemplos ===-->   
+                <!--=== Fin Menú Cita ===-->  
+
             </div>
             <div class='side-bar-footer mb-5'>
                 <form method="post" action="{% url 'logout' %}">
