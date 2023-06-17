@@ -4,8 +4,7 @@ import json
 import random
 from turtle import home
 import pandas as pd
-from datetime import datetime, time, timedelta
-
+from datetime import datetime,timedelta
 
 from django import forms
 from django.contrib import messages
@@ -20,6 +19,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from estudio.models import Paciente, Trabajador,Cita
+
+
 # Create your views here.
 
 from registration.models import Profile
@@ -119,27 +120,39 @@ def crear_cita(request):
 def cita_save(request):
     profile = Profile.objects.get(user_id=request.user.id)
     if profile.group_id != 1:
-        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una área para la que no tienes permisos')
         return redirect('check_group_main')
 
     if request.method == 'POST':
         paciente_id = request.POST.get('paciente')
         trabajador_id = request.POST.get('odontologo')
-       #fechaAtencion = request.POST.get('fechaAtencion')
-        #horaInicio = request.POST.get('horaInicio')
+        fechaAtencion = request.POST.get('fechaAtencion')
+        horaInicio = request.POST.get('horaInicio')
 
-
-        if not paciente_id or not trabajador_id: #or not fechaAtencion or not horaInicio:
+        if not paciente_id or not trabajador_id or not fechaAtencion or not horaInicio:
             messages.add_message(request, messages.INFO, 'Debes ingresar toda la información y seleccionar una categoría')
             return redirect('crear_cita')
-        
+
         paciente = Paciente.objects.get(id=paciente_id)
-        trabajador =Trabajador.objects.get(id=trabajador_id)
-        cita = Cita(paciente=paciente, trabajador=trabajador)#, fechaAtencion=fechaAtencion, horaInicio=horaInicio)
+        trabajador = Trabajador.objects.get(id=trabajador_id)
+
+    
+        duracion_cita = timedelta(hours=1) 
+        horaInicio = datetime.strptime(horaInicio, '%H:%M').time()
+        xz=datetime.combine(datetime.today(), horaInicio)
+        horaFinal = xz + duracion_cita
+
+        cita = Cita(
+            paciente=paciente,
+            trabajador=trabajador,
+            fechaAtencion=fechaAtencion,
+            horaInicio=horaInicio,
+            horaFinal=horaFinal
+        )
         cita.save()
         messages.add_message(request, messages.INFO, 'Cita ingresada con éxito')
         return redirect('main')
-    
+
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')

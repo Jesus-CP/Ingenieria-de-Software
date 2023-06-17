@@ -48,11 +48,12 @@ class Trabajador(models.Model):
 class Cita(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
-    fechaAtencion = models.DateTimeField(auto_now_add=True,verbose_name='Fecha Atencion')
-    horaInicio = models.DateTimeField(auto_now_add=True,verbose_name='Hora Inicio')
-    horaFinal = models.DateTimeField(auto_now_add=True,verbose_name='Hora Final')
+    fechaAtencion = models.DateField(verbose_name='Fecha Atencion')
+    horaInicio = models.TimeField(verbose_name='Hora Inicio')
+    horaFinal = models.TimeField(verbose_name='Hora Final')
     procedimiento = models.CharField(max_length=100, null=True, blank=True, verbose_name='Procedimiento Paciente')
     diagnostico = models.CharField(max_length=100, null=True, blank=True, verbose_name='Diagnostico Paciente')
     extra = models.CharField(max_length=100, null=True, blank=True, verbose_name='Extra Paciente')
     estado = models.CharField(max_length=100, null=True, blank=True, default='Activo', verbose_name='Estado')
+
 

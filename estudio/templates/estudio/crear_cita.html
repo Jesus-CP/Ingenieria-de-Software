@@ -46,7 +46,15 @@
         {% else %}
         <p>No hay odontologos disponibles en este momento, para crear una cita primero debe haber odontologos.</p>
         {% endif %}
-
+        <div class="mb-0 col-md-12">
+          <label for="fechaAtencion">Fecha de Atención:</label>
+          <input type="date" name="fechaAtencion" id="fechaAtencion" class="form-control" required>
+        </div>
+        
+        <div class="mb-0 col-md-12">
+          <label for="horaInicio">Hora de Inicio:</label>
+          <input type="time" name="horaInicio" id="horaInicio" class="form-control" required>
+        </div>
           
           <div class="mb-0 col-md-12">
             <div class="d-flex justify-content-center mb-2">
