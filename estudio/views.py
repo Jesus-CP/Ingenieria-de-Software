@@ -131,22 +131,7 @@ def paciente_save(request):
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
     
-@login_required
-def crear_cita(request):
-    profile = Profile.objects.get(user_id=request.user.id)
-    if profile.group_id != 1:
-        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
-        return redirect('check_group_main')
-    
-    paciente = Paciente.objects.all()
-    odontologo = Trabajador.objects.filter(state="O")
-    template_name = 'estudio/crear_cita.html'
-    context = {
-        'odontologo': odontologo,
-        'paciente': paciente,
-        'profile': profile,
-    }
-    return render(request, template_name, context)
+
 
 @login_required
 def cita_save(request):
@@ -156,34 +141,30 @@ def cita_save(request):
         return redirect('check_group_main')
 
     if request.method == 'POST':
-        paciente_id = request.POST.get('paciente')
-        trabajador_id = request.POST.get('odontologo')
+        ODONTOLOGO_DEFAULT = Trabajador.objects.get(id=1)
+        PACIENTE_DEFAULT = Paciente.objects.get(id=1)
         fechaAtencion = request.POST.get('fechaAtencion')
         horaInicio = request.POST.get('horaInicio')
+        print(fechaAtencion)
+        print(horaInicio)
 
-        if not paciente_id or not trabajador_id or not fechaAtencion or not horaInicio:
-            messages.add_message(request, messages.INFO, 'Debes ingresar toda la información y seleccionar una categoría')
-            return redirect('crear_cita')
+        if  not fechaAtencion or not horaInicio:
+            messages.add_message(request, messages.INFO, 'Debes ingresar una hora y fecha para guardar')
+            return redirect('agendarCita')
 
-        paciente = Paciente.objects.get(id=paciente_id)
-        trabajador = Trabajador.objects.get(id=trabajador_id)
 
-    
-        duracion_cita = timedelta(hours=1) 
         horaInicio = datetime.strptime(horaInicio, '%H:%M').time()
-        xz=datetime.combine(datetime.today(), horaInicio)
-        horaFinal = xz + duracion_cita
-
+ 
         cita = Cita(
-            paciente=paciente,
-            trabajador=trabajador,
+            paciente=PACIENTE_DEFAULT,
+            trabajador=ODONTOLOGO_DEFAULT,
             fechaAtencion=fechaAtencion,
             horaInicio=horaInicio,
-            horaFinal=horaFinal
+
         )
         cita.save()
         messages.add_message(request, messages.INFO, 'Cita ingresada con éxito')
-        return redirect('main')
+        return redirect('agendarCita')
 
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')

@@ -150,7 +150,9 @@ body {
     font-size: small;
     margin: 5px;
 }
-
+.btnhora.activo {
+  background-color: #e0e0e0;
+}
 .btnhora:hover {
     background-color: #2E5BFC;
     opacity: 0.9;

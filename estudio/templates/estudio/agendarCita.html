@@ -46,37 +46,27 @@
                     HT
                 </p>
             </div>
-            <div class="fecha">
-                <h3>Selecciona el dia que deseas agendar</h3>
-                <input class="btnfecha" type="date">
-            </div>
-            <div class="divhoras">
-                <h3>Selecciona la hora que deseas agendar</h3>
-                <div class="horas">
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        10:00 - 11:00
-                    </button>
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        11:00 - 12:00
-                    </button>
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        12:00 - 13:00
-                    </button>
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        13:00 - 14:00
-                    </button>
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        14:00 - 15:00
-                    </button>
-                    <button class="btnhora" onclick="seleccionarBoton(this)">
-                        15:00 - 16:00
-                    </button>
+            <form method="post" action="{% url 'cita_save' %}">
+                {% csrf_token %}
+                <div class="fecha">
+                    <h3>Selecciona el día que deseas agendar</h3>
+                    <input  name="fechaAtencion" id="fechaAtencion" class="btnfecha" type="date">
                 </div>
-            </div>
-            <div class="btnconfirmar">
-                <button class="btn1" onclick="mostrarModal(modal)">
-                    Confirmar
-                </button>
+                <div class="divhoras">
+                    <h3>Selecciona la hora que deseas agendar</h3>
+                    <div class="horas">
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">10:00 - 11:00</button>
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">11:00 - 12:00</button>
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">12:00 - 13:00</button>
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">13:00 - 14:00</button>
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">14:00 - 15:00</button>
+                        <button type="button" class="btnhora" onclick="seleccionarBoton(this)">15:00 - 16:00</button>
+                    </div>
+                </div>
+                <input type="hidden" name="horaInicio" id="horaInicio">
+                <button type="submit" class="btn" onclick="mostrarModal(modal)">Confirmar</button>
+            </form>
+            
             </div>
         </div>
 
