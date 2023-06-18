@@ -13,6 +13,7 @@ estudio_urlpatterns = [
     path('crear_paciente/', views.crear_paciente, name="crear_paciente"),
     path('paciente_save/', views.paciente_save, name="paciente_save"),
     path('cita_save/',views.cita_save,name="cita_save"),
+    path('ver_agenda/<offset>/',views.ver_agenda,name="ver_agenda"),
     ]
 
     

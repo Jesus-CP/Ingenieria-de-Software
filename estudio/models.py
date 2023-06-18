@@ -52,3 +52,6 @@ class Cita(models.Model):
     diagnostico = models.CharField(max_length=100, null=True, blank=True, verbose_name='Diagnostico Paciente')
     extra = models.CharField(max_length=100, null=True, blank=True, verbose_name='Extra Paciente')
     estado = models.CharField(max_length=100, null=True, blank=True, default='Activo', verbose_name='Estado')
+
+    def obtener_hora(self):
+        return self.horaInicio.strftime('%H:%M')

@@ -1,0 +1,99 @@
+
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendario Semanal</title>
+    <style>
+        #calendar {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}</style>
+</head>
+<header class="mb-4">
+    <div class="row">
+      <div class="col-12 col-sm-8 mb-3">
+          <h2 class='h2 medium text-blue'>Agenda Semanal</h2>
+      </div>
+      <div class="col-12 col-sm-4 mb-3">
+          <a href="{% url 'odontologo' %}" class="button button--gray form-control">Volver</a>
+      </div>
+  </header>
+<body>
+    <div class="header">
+        <a href="{% url 'ver_agenda' offset=offset|add:'-1' %}">Semana anterior</a>
+        <h2>Semana del {{ inicio_semana }} al {{ fin_semana }}</h2>
+        <a href="{% url 'ver_agenda' offset=offset|add:'1' %}">Semana siguiente</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+              <th>Horario</th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miércoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sábado</th>
+              <th>Domingo</th>
+            </tr>
+             <tr>
+                <th></th>
+                {% for day in date_range %}
+                    <th>{{ day }}</th>
+                {% endfor %}
+            </tr>
+          </thead>
+          <tbody id="calendar-body">
+            {% for horario in horarios %}
+                <tr>
+                    <td>{{ horario }}</td>
+                    {% for day in date_range %}
+                        <td>
+                            {% for evento in eventos_semana %}
+                                {% if evento.fechaAtencion == day and evento.obtener_hora == horario %}
+                                <a href="#">
+                                    {{ evento.paciente.nombre }}
+                                </a>
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            
+    </tbody>
+    </table>
+</body>
+</html>
+
+
+{% endblock %}
