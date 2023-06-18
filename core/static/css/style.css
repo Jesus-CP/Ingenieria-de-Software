@@ -252,3 +252,21 @@ body {
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
 }
+
+
+/* Iniciar Sesion */
+
+.x input {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    border: 1px solid #2E5BFC;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.center-btn {
+    display: block;
+    margin: 0 auto;
+}
