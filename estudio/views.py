@@ -5,6 +5,7 @@ import random
 from turtle import home
 import pandas as pd
 from datetime import datetime,timedelta
+import locale
 
 from django import forms
 from django.contrib import messages
@@ -35,37 +36,28 @@ def ver_agenda(request, offset=0):
     if profiles.group_id != 1 and profiles.group_id != 2:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
-    
-     # Obtener la fecha actual
     fecha_actual = datetime.now().date()
-
-    # Calcular el desplazamiento de semanas
     offset = int(offset)
-
-    # Calcular la fecha de inicio de la semana actual
     inicio_semana = fecha_actual - timedelta(days=fecha_actual.weekday())
-
-    # Aplicar el desplazamiento de semanas
     inicio_semana += timedelta(weeks=offset)
-
-    # Calcular la fecha de finalización de la semana
     fin_semana = inicio_semana + timedelta(days=6)
-
-    # Obtener los eventos de la semana
     eventos_semana = Cita.objects.filter(fechaAtencion__range=[inicio_semana, fin_semana]).order_by('horaInicio')
-
-    # Generar la lista de días de la semana
     fecha_actual = inicio_semana
     date_range = []
     while fecha_actual <= fin_semana:
         date_range.append(fecha_actual)
         fecha_actual += timedelta(days=1)
 
-    # Generar la lista de horarios
+    nombres_dias = [
+    'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+    ]
+    resultados = [(nombres_dias[fecha.weekday()]+" "+str(fecha.day)) for fecha in date_range]
+    print(date_range)
+
     horarios = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
 
-    # Pasar los eventos y la lista de días al template
     context = {
+        'resultados': resultados,
         'profiles':profiles,
         'eventos_semana': eventos_semana,
         'date_range': date_range,
@@ -75,8 +67,6 @@ def ver_agenda(request, offset=0):
         'offset': offset
     }
     
-    # Obtener las citas médicas dentro del rango de fechas
-    #citas_medicas = Cita.objects.filter(fechaAtencion__range=[start_date, end_date])
     template_name = 'estudio/ver_agenda.html'
     return render(request,template_name,context)
 

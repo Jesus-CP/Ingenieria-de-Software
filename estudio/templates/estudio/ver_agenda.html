@@ -6,80 +6,95 @@
 <html>
 <head>
     <title>Calendario Semanal</title>
+    <meta charset="UTF-8">
     <style>
-        #calendar {
-  width: 100%;
+body {
+    background: linear-gradient(120deg,#2E5BFC, #9AD5FF);
+
+}
+.container {
+  text-align: right;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+.container a,
+.container h2 {
+  display: inline-block;
+  margin-right: 70px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 th,
 td {
-  padding: 10px;
+  padding: 15px;
   text-align: center;
   border: 1px solid #ccc;
 }
+td.has-info {
+  background-color: lightgreen;
+}
+.align-right {
+  float:right;
+}
+.title {
+    margin: 0 auto;
+    margin-top: 50px;
+    color: white;
+    text-align: center;
+}
 
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}</style>
+</style>
 </head>
-<header class="mb-4">
-    <div class="row">
-      <div class="col-12 col-sm-8 mb-3">
-          <h2 class='h2 medium text-blue'>Agenda Semanal</h2>
-      </div>
-      <div class="col-12 col-sm-4 mb-3">
-          <a href="{% url 'odontologo' %}" class="button button--gray form-control">Volver</a>
-      </div>
-  </header>
-<body>
-    <div class="header">
-        <a href="{% url 'ver_agenda' offset=offset|add:'-1' %}">Semana anterior</a>
-        <h2>Semana del {{ inicio_semana }} al {{ fin_semana }}</h2>
-        <a href="{% url 'ver_agenda' offset=offset|add:'1' %}">Semana siguiente</a>
-    </div>
 
-    <table>
+  
+<body>
+    <header class="">
+        <div class="">
+          <div class="">
+            <h1 class="title">
+                Studio Dental Happy Teeth
+            </h1>
+          </div>
+          <div class="">
+              
+          </div>
+    </header>
+    <div class="container">
+        <a href="{% url 'odontologo' %}" style="color: white;">Volver</a>
+        <a href="#" style="color: white;">Cerrar Sesión</a>
+        
+    </div>
+    <div>
+    <table class="align-right">
         <thead>
-            <tr>
-              <th>Horario</th>
-              <th>Lunes</th>
-              <th>Martes</th>
-              <th>Miércoles</th>
-              <th>Jueves</th>
-              <th>Viernes</th>
-              <th>Sábado</th>
-              <th>Domingo</th>
-            </tr>
+            <tr><th colspan="8">
+                <a href="{% url 'ver_agenda' offset=offset|add:'-1' %}"> <----- </a>
+                Semana del {{ inicio_semana }} al {{ fin_semana }} 
+                <a href="{% url 'ver_agenda' offset=offset|add:'1' %}">-----></a>
+            </th>
+        </tr>
              <tr>
-                <th></th>
-                {% for day in date_range %}
+                <th>Horario</th>
+                {% for day in resultados %}
                     <th>{{ day }}</th>
                 {% endfor %}
             </tr>
           </thead>
-          <tbody id="calendar-body">
+          <tbody>
             {% for horario in horarios %}
                 <tr>
-                    <td>{{ horario }}</td>
+                    <td><b>{{ horario }}</b></td>
                     {% for day in date_range %}
-                        <td>
+                    <td {% for evento in eventos_semana %}{% if evento.fechaAtencion == day and evento.obtener_hora == horario %} class="has-info"{% endif %}{% endfor %}>
                             {% for evento in eventos_semana %}
                                 {% if evento.fechaAtencion == day and evento.obtener_hora == horario %}
-                                <a href="#">
+                                <a href="#" style="color: black;">
                                     {{ evento.paciente.nombre }}
                                 </a>
                                     <br>
@@ -91,9 +106,12 @@ button {
             {% endfor %}
             
     </tbody>
-    </table>
-</body>
-</html>
 
+    </table>
+</div>
+
+    </body>
+
+</html>
 
 {% endblock %}
