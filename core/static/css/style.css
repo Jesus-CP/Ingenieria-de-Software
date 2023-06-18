@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap%27');
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Inter;
+}
+
+.container {
+    display: flex;
+    margin: auto;
+    height: 100%;
+}
+
+.cl {
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 50%;
+    flex: 1;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+}
+
+.divtitle {
+    flex: auto;
+    margin-top: 0;
+}
+
+.title {
+    margin: 0 auto;
+    margin-top: 50px;
+    color: white;
+}
+
+.pp {
+    color: white;
+}
+
+.cr {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+}
+
+.logo {
+    margin-top: 0;
+    margin-bottom: 80px;
+    border-radius: 20px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+}
+
+.logotext {
+    padding: 5px 60px;
+    color: white;
+    font-size: 4vw;
+}
+
+.btn {
+    padding: 10px 40px;
+    margin-top: 30px;
+    width: 250px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    color: white;
+    border: 0px;
+    font-size: medium;
+}
+
+.btn:hover {
+    background-color: darkblue;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.volver {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+}
+
+.volver:visited {
+    color: inherit;
+}
+
+.imgvolver {
+    height: auto;
+    width: 40px;
+}
+
+.horas {
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    margin-bottom: 60px;
+}
+
+.fecha {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btnfecha {
+    padding: 10px 40px;
+    width: 200px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    color: white;
+    border: 0px;
+    font-size: medium;
+}
+
+.divhoras {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.btnhora {
+    padding: 10px 10px;
+    width: 120px;
+    border-radius: 10px;
+    border: 2px solid #2E5BFC;
+    background-color: white;
+    font-size: small;
+    margin: 5px;
+}
+
+.btnhora:hover {
+    background-color: #2E5BFC;
+    opacity: 0.9;
+    cursor: pointer;
+    color: white;
+}
+
+.btnhoraselected {
+    padding: 10px 10px;
+    width: 120px;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    font-size: small;
+    margin: 5px;
+    border-width: 0px;
+    color: white;
+}
+
+.btnhoraselected:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#modal div {
+    width: 350px;
+    height: 130px;
+    margin: 30% auto;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: 1px solid #666666;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.cita {
+    padding: 10px 40px;
+    margin-top: 30px;
+    width: 200px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    color: white;
+    border: 0px;
+    font-size: medium;
+}
+
+.btncancel:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.btncancel {
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin: 10px;
+    width: 100px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #fc3f2e, #ff7a7a);
+    color: white;
+    border: 0px;
+    font-size: small;
+}
+
+.btnsi {
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin: 10px;
+    width: 100px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    color: white;
+    border: 0px;
+    font-size: small;
+}
+
+.btnsi:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#modalcancelar div {
+    width: 350px;
+    height: 130px;
+    margin: 30% auto;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border: 1px solid #666666;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}

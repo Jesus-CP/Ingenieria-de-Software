@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/agendar.js' %}"></script>
+    <title>Happy Teeth</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="modal" class="hide">
+            <div>
+                <p>
+                    Reserva agendada exitosamente
+                </p>
+                <a href="{% url 'paciente' %}">
+                    <button class="btn">
+                        Ok
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="cl">
+            <div class="divtitle">
+                <h1 class="title">
+                    Studio Dental Happy Teeth
+                </h1>
+            </div>
+
+            <p class="pp">
+                privacy policy and terms of service
+            </p>
+        </div>
+        <div class="cr">
+            <a class="volver" href="{% url 'paciente' %}">
+                <img class="imgvolver" src="{% static 'assets/img/volver.png' %}">
+            </a>
+            <div class="logo">
+                <p class="logotext">
+                    HT
+                </p>
+            </div>
+            <div class="fecha">
+                <h3>Selecciona el dia que deseas agendar</h3>
+                <input class="btnfecha" type="date">
+            </div>
+            <div class="divhoras">
+                <h3>Selecciona la hora que deseas agendar</h3>
+                <div class="horas">
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        10:00 - 11:00
+                    </button>
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        11:00 - 12:00
+                    </button>
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        12:00 - 13:00
+                    </button>
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        13:00 - 14:00
+                    </button>
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        14:00 - 15:00
+                    </button>
+                    <button class="btnhora" onclick="seleccionarBoton(this)">
+                        15:00 - 16:00
+                    </button>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="mostrarModal(modal)">
+                Confirmar
+            </button>
+        </div>
+
+        
+
+    </div>
+</body>
+
+</html>

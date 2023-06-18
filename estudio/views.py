@@ -25,12 +25,44 @@ from estudio.models import Paciente, Trabajador,Cita
 
 from registration.models import Profile
 
-def main(request):
+def index(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
-    template_name = 'estudio/main.html'
+    template_name = 'estudio/index.html'
+    return render(request,template_name,{'profiles':profiles})
+
+def paciente(request):
+    profiles = Profile.objects.get(user_id = request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
+        return redirect('check_group_main')
+    template_name = 'estudio/paciente.html'
+    return render(request,template_name,{'profiles':profiles})
+
+def odontologo(request):
+    profiles = Profile.objects.get(user_id = request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
+        return redirect('check_group_main')
+    template_name = 'estudio/odontologo.html'
+    return render(request,template_name,{'profiles':profiles})
+
+def agendarCita(request):
+    profiles = Profile.objects.get(user_id = request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
+        return redirect('check_group_main')
+    template_name = 'estudio/agendarCita.html'
+    return render(request,template_name,{'profiles':profiles})
+
+def verCita(request):
+    profiles = Profile.objects.get(user_id = request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
+        return redirect('check_group_main')
+    template_name = 'estudio/verCita.html'
     return render(request,template_name,{'profiles':profiles})
 
 @login_required
@@ -61,7 +93,7 @@ def odontologo_save(request):
         odontologo_save.save()
 
         messages.add_message(request, messages.INFO, 'Odontologo ingresado con éxito')
-        return redirect('main')
+        return redirect('index')
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
@@ -94,7 +126,7 @@ def paciente_save(request):
         paciente_save.save()
 
         messages.add_message(request, messages.INFO, 'Paciente ingresado con éxito')
-        return redirect('main')
+        return redirect('paciente')
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')

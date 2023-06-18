@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Happy Teeth</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cl">
+            <div class="divtitle">
+                <h1 class="title">
+                    Studio Dental Happy Teeth
+                </h1>
+            </div>
+
+            <p class="pp">
+                privacy policy and terms of service
+            </p>
+        </div>
+        <div class="cr">
+            <div class="logo">
+                <p class="logotext">
+                    HT
+                </p>
+            </div>
+            <a href="{% url 'paciente' %}">
+                <button class="btn">
+                    Paciente
+                </button>
+            </a>
+            <a href="{% url 'odontologo' %}">
+                <button class="btn">
+                    Odontologo
+                </button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

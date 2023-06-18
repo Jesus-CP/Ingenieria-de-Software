@@ -31,7 +31,7 @@ def check_profile(request):
         return redirect('login')
     if profile.group_id == 1:        
         #return HttpResponse('Usted se ha autentificado')
-        return redirect('main')
+        return redirect('index')
     else:
         return redirect('logout')
 

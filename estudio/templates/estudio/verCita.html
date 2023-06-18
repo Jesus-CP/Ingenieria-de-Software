@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/agendar.js' %}"></script>
+    <title>Happy Teeth</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="modalcancelar" class="hide">
+            <div>
+                <p>
+                ¿Seguro que deseas cancelar la cita seleccionada?
+                </p>
+                <a style="text-decoration: none;" href="{% url 'paciente' %}">
+                    <button class="btnsi">
+                        Si
+                    </button>
+                </a>
+                <button class="btncancel" onclick="mostrarModal(modalcancelar)" >
+                    No
+                </button>
+            </div>
+        </div>
+
+
+        <div class="cl">
+            <div class="divtitle">
+                <h1 class="title">
+                    Studio Dental Happy Teeth
+                </h1>
+            </div>
+
+            <p class="pp">
+                privacy policy and terms of service
+            </p>
+        </div>
+        <div class="cr">
+            <a class="volver" href="{% url 'paciente' %}">
+                <img class="imgvolver" src="{% static 'assets/img/volver.png' %}">
+            </a>
+            <div class="logo">
+                <p class="logotext">
+                    HT
+                </p>
+            </div>
+                <h1>
+                    Citas Agendadas
+                </h1>
+                
+                <div>
+                    <button class="cita">
+                        xx/xx/xxxx - dia - hh:mm
+                    </button>
+                    <button class="btncancel" onclick="mostrarModal(modalcancelar)">
+                        Cancelar
+                    </button>
+                </div>
+                <div>
+                    <button class="cita">
+                        xx/xx/xxxx - dia - hh:mm
+                    </button>
+                    <button class="btncancel" onclick="mostrarModal(modalcancelar)">
+                        Cancelar
+                    </button>
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>

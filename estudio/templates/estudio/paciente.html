@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Happy Teeth</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="cl">
+            <div class="divtitle">
+                <h1 class="title">
+                    Studio Dental Happy Teeth
+                </h1>
+            </div>
+            <p class="pp">
+                privacy policy and terms of service
+            </p>
+        </div>
+        <div class="cr">
+            <a class="volver" href="{% url 'index' %}">
+                <img class="imgvolver" src="{% static 'assets/img/volver.png' %}">
+            </a>
+            <div class="logo">
+                <p class="logotext">
+                    HT
+                </p>
+            </div>
+            <a href="{% url 'agendarCita' %}">
+                <button class="btn">
+                    Agendar Cita
+                </button>
+            </a>
+            <a href="{% url 'verCita' %}">
+                <button class="btn">
+                    Ver Citas Agendadas
+                </button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
