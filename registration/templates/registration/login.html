@@ -26,7 +26,7 @@
                     {% endif%}
                     <form action="" method="post">
                         {% csrf_token %}
-                        <h4 class="mb-3 text-blue text-center">Iniciar Sesion</h4>
+                        <h4 class="tit">Iniciar Sesion</h4>
                         {% if form.non_field_errors %}
                         <p style="color: red">
                             Usuario o contraseña incorrectos, prueba de nuevo.
@@ -42,8 +42,8 @@
                                 <input type="password" name="password" class="c1" id="password" />
                                 <span class="feedback body-small text-regular"></span>
                             </div>
-                            <div>
-                                <button type="submit" class="btn center-btn">
+                            <div class="btn">
+                                <button type="submit" class="btn1 center-btn">
                                 <span>Login</span>
                                 </button>
                             </div>

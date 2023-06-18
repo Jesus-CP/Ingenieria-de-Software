@@ -15,11 +15,11 @@
 
         <div id="modal" class="hide">
             <div>
-                <p>
+                <p class="p1">
                     Reserva agendada exitosamente
                 </p>
                 <a href="{% url 'paciente' %}">
-                    <button class="btn">
+                    <button class="btnok">
                         Ok
                     </button>
                 </a>
@@ -73,10 +73,11 @@
                     </button>
                 </div>
             </div>
-            
-            <button class="btn" onclick="mostrarModal(modal)">
-                Confirmar
-            </button>
+            <div class="btnconfirmar">
+                <button class="btn1" onclick="mostrarModal(modal)">
+                    Confirmar
+                </button>
+            </div>
         </div>
 
         

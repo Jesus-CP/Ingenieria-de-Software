@@ -52,30 +52,41 @@ body {
 }
 
 .logo {
-    margin-top: 0;
-    margin-bottom: 80px;
+
+    margin-bottom: 50px;
     border-radius: 20px;
     background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    width: 150px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logotext {
     padding: 5px 60px;
     color: white;
-    font-size: 4vw;
+    font-size: 40px;
 }
 
 .btn {
     padding: 10px 40px;
     margin-top: 30px;
-    width: 250px;
+    width: 350px;
+    height: 60px;
+}
+
+.btn1 {
+    width: 100%;
+    height: 100%;
     border-radius: 15px;
     background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
     color: white;
     border: 0px;
-    font-size: medium;
+    font-size: 25px;
 }
 
-.btn:hover {
+.btn1:hover {
     background-color: darkblue;
     opacity: 0.5;
     cursor: pointer;
@@ -113,7 +124,8 @@ body {
 
 .btnfecha {
     padding: 10px 40px;
-    width: 200px;
+    width: 80%;
+    height: 30px;
     border-radius: 15px;
     background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
     color: white;
@@ -126,7 +138,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 .btnhora {
@@ -165,7 +177,7 @@ body {
 #modal div {
     width: 350px;
     height: 130px;
-    margin: 30% auto;
+
     background-color: white;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -177,7 +189,7 @@ body {
     font-size: 15px;
     position: absolute;
     left: 50%;
-    top: 100px;
+    top: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
@@ -191,11 +203,12 @@ body {
     padding: 10px 40px;
     margin-top: 30px;
     width: 200px;
+    height: 75px;
     border-radius: 15px;
     background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
     color: white;
     border: 0px;
-    font-size: medium;
+    font-size: 20px;
 }
 
 .btncancel:hover {
@@ -208,11 +221,12 @@ body {
     margin-top: 30px;
     margin: 10px;
     width: 100px;
+    height: 55px;
     border-radius: 15px;
     background: linear-gradient(120deg, #fc3f2e, #ff7a7a);
     color: white;
     border: 0px;
-    font-size: small;
+    font-size: 15px;
 }
 
 .btnsi {
@@ -224,7 +238,7 @@ body {
     background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
     color: white;
     border: 0px;
-    font-size: small;
+    font-size: 20px;
 }
 
 .btnsi:hover {
@@ -232,10 +246,26 @@ body {
     opacity: 0.8;
 }
 
+.btnno {
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin: 10px;
+    width: 100px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #fc3f2e, #ff7a7a);
+    color: white;
+    border: 0px;
+    font-size: 20px;
+}
+
+.btnno:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 #modalcancelar div {
     width: 350px;
     height: 130px;
-    margin: 30% auto;
     background-color: white;
     border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -247,23 +277,55 @@ body {
     font-size: 15px;
     position: absolute;
     left: 50%;
-    top: 100px;
+    top: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
 }
 
+.btnok {
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin: 10px;
+    width: 100px;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #2E5BFC, #9AD5FF);
+    color: white;
+    border: 0px;
+    font-size: 20px;
+}
+
+.btnok:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.btnconfirmar {
+    padding: 10px 40px;
+    margin-top: 0;
+    width: 300px;
+    height: 55px;
+}
+
+.p1 {
+    font-size: 20px;
+}
 
 /* Iniciar Sesion */
-
+.tit {
+    text-align: center;
+    font-size: 20px;
+}
 .x input {
     width: 100%;
+    height: 30px;
     padding: 10px 0;
     border-radius: 8px;
     border: none;
     border: 1px solid #2E5BFC;
     margin-bottom: 30px;
     padding-left: 10px;
+    font-size: 20px;
 }
 
 .center-btn {

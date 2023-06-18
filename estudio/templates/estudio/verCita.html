@@ -16,7 +16,7 @@
 
         <div id="modalcancelar" class="hide">
             <div>
-                <p>
+                <p class="p1">
                 ¿Seguro que deseas cancelar la cita seleccionada?
                 </p>
                 <a style="text-decoration: none;" href="{% url 'paciente' %}">
@@ -24,7 +24,7 @@
                         Si
                     </button>
                 </a>
-                <button class="btncancel" onclick="mostrarModal(modalcancelar)" >
+                <button class="btnno" onclick="mostrarModal(modalcancelar)" >
                     No
                 </button>
             </div>
@@ -57,7 +57,7 @@
                 
                 <div>
                     <button class="cita">
-                        xx/xx/xxxx - dia - hh:mm
+                        xx/xx/xxxx hh:mm
                     </button>
                     <button class="btncancel" onclick="mostrarModal(modalcancelar)">
                         Cancelar
@@ -65,7 +65,7 @@
                 </div>
                 <div>
                     <button class="cita">
-                        xx/xx/xxxx - dia - hh:mm
+                        xx/xx/xxxx hh:mm
                     </button>
                     <button class="btncancel" onclick="mostrarModal(modalcancelar)">
                         Cancelar
