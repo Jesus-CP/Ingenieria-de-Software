@@ -239,3 +239,9 @@ def verCita(request):
         'citas_agendadas': citas_agendadas
     }
     return render(request, template_name, context)
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('login')
