@@ -36,27 +36,33 @@ def ver_agenda(request, offset=0):
     if profiles.group_id != 1 and profiles.group_id != 2:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
+    #ESTABLECER SEMANA
     fecha_actual = datetime.now().date()
     offset = int(offset)
     inicio_semana = fecha_actual - timedelta(days=fecha_actual.weekday())
     inicio_semana += timedelta(weeks=offset)
     fin_semana = inicio_semana + timedelta(days=6)
+    #BÚSQUEDA DE CITAS
     eventos_semana = Cita.objects.filter(fechaAtencion__range=[inicio_semana, fin_semana]).order_by('horaInicio')
+    cant_eventos = Cita.objects.count()
+    #ALMACENANDO LAS FECHAS DE LA SEMANA CORRESPONDIENTE EN UN ARRAY
     fecha_actual = inicio_semana
     date_range = []
     while fecha_actual <= fin_semana:
         date_range.append(fecha_actual)
         fecha_actual += timedelta(days=1)
-
+    #ESTABLECIENDO UN ARRAY CON LOS DÍAS DE LA SEMANA Y NÚMERO CORRESPONDIENTE
     nombres_dias = [
     'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
     ]
     resultados = [(nombres_dias[fecha.weekday()]+" "+str(fecha.day)) for fecha in date_range]
-    print(date_range)
-
+    
+    #HORARIOS DE ATENCIÓN
     horarios = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
-
+    
+    #INFORMACIÓN PARA EL TEMPLATE
     context = {
+        'cant_eventos': cant_eventos,
         'resultados': resultados,
         'profiles':profiles,
         'eventos_semana': eventos_semana,
