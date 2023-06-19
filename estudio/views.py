@@ -44,7 +44,7 @@ def ver_agenda(request, offset=0):
     fin_semana = inicio_semana + timedelta(days=6)
     #BÚSQUEDA DE CITAS
     eventos_semana = Cita.objects.filter(fechaAtencion__range=[inicio_semana, fin_semana]).order_by('horaInicio')
-    cant_eventos = Cita.objects.count()
+    cant_eventos = Cita.objects.filter(fechaAtencion__range=[inicio_semana, fin_semana]).count()
     #ALMACENANDO LAS FECHAS DE LA SEMANA CORRESPONDIENTE EN UN ARRAY
     fecha_actual = inicio_semana
     date_range = []
@@ -59,7 +59,7 @@ def ver_agenda(request, offset=0):
     
     #HORARIOS DE ATENCIÓN
     horarios = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
-    
+
     #INFORMACIÓN PARA EL TEMPLATE
     context = {
         'cant_eventos': cant_eventos,
