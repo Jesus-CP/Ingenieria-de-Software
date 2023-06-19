@@ -54,23 +54,20 @@
                 <h1>
                     Citas Agendadas
                 </h1>
-                
-                <div>
-                    <button class="cita">
-                        xx/xx/xxxx hh:mm
-                    </button>
-                    <button class="btncancel" onclick="mostrarModal(modalcancelar)">
-                        Cancelar
-                    </button>
-                </div>
-                <div>
-                    <button class="cita">
-                        xx/xx/xxxx hh:mm
-                    </button>
-                    <button class="btncancel" onclick="mostrarModal(modalcancelar)">
-                        Cancelar
-                    </button>
-                </div>
+                <table>
+                    <tbody>
+                        {% for cita in citas_agendadas %}
+                        <tr>
+                            <td class="cita">{{ cita.fechaAtencion }} {{ cita.horaInicio }}</td>
+                            <td>
+                                <button class="btncancel" onclick="mostrarModal(modalcancelar)">
+                                    Cancelar
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
         </div>
     </div>
 </body>

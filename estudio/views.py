@@ -28,9 +28,9 @@ from estudio.models import Paciente, Trabajador,Cita
 from django.shortcuts import render
 from datetime import datetime, timedelta
 
-
-
 from registration.models import Profile
+
+@login_required
 def ver_agenda(request, offset=0):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -76,6 +76,7 @@ def ver_agenda(request, offset=0):
     template_name = 'estudio/ver_agenda.html'
     return render(request,template_name,context)
 
+@login_required
 def index(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -84,6 +85,7 @@ def index(request):
     template_name = 'estudio/index.html'
     return render(request,template_name,{'profiles':profiles})
 
+@login_required
 def paciente(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -92,6 +94,7 @@ def paciente(request):
     template_name = 'estudio/paciente.html'
     return render(request,template_name,{'profiles':profiles})
 
+@login_required
 def odontologo(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -100,6 +103,7 @@ def odontologo(request):
     template_name = 'estudio/odontologo.html'
     return render(request,template_name,{'profiles':profiles})
 
+@login_required
 def agendarCita(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -108,6 +112,7 @@ def agendarCita(request):
     template_name = 'estudio/agendarCita.html'
     return render(request,template_name,{'profiles':profiles})
 
+@login_required
 def verCita(request):
     profiles = Profile.objects.get(user_id = request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -124,6 +129,7 @@ def crear_odontologo(request):
         return redirect('check_group_main')
     template_name = 'estudio/crear_odontologo.html'
     return render(request,template_name,{'profiles':profiles})
+
 @login_required
 def odontologo_save(request):
     profile = Profile.objects.get(user_id=request.user.id)
@@ -181,8 +187,6 @@ def paciente_save(request):
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
-    
-
 
 @login_required
 def cita_save(request):
@@ -220,3 +224,18 @@ def cita_save(request):
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
+    
+def verCita(request):
+    profiles = Profile.objects.get(user_id=request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a un área para la que no tienes permisos')
+        return redirect('check_group_main')
+
+    citas_agendadas = Cita.objects.order_by('fechaAtencion','horaInicio')  # Obtener todas las citas agendadas
+
+    template_name = 'estudio/verCita.html'
+    context = {
+        'profiles': profiles,
+        'citas_agendadas': citas_agendadas
+    }
+    return render(request, template_name, context)
