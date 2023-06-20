@@ -115,7 +115,6 @@ def agendarCita(request):
     return render(request,template_name,{'profiles':profiles,'citas_doctor':citas_doctor})
 
 
-    
 def is_time_available(fechaAtencion, horaInicio):
     citas = Cita.objects.filter(fechaAtencion=fechaAtencion, horaInicio=horaInicio)
     if citas.exists():
