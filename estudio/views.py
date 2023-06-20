@@ -209,8 +209,7 @@ def cita_save(request):
         PACIENTE_DEFAULT = Paciente.objects.get(id=1)
         fechaAtencion = request.POST.get('fechaAtencion')
         horaInicio = request.POST.get('horaInicio')
-        print(fechaAtencion)
-        print(horaInicio)
+
 
         if  not fechaAtencion or not horaInicio:
             messages.add_message(request, messages.INFO, 'Debes ingresar una hora y fecha para guardar')

@@ -13,18 +13,7 @@
 <body>
     <div class="container">
 
-        <div id="modal" class="hide">
-            <div>
-                <p class="p1">
-                    Reserva agendada exitosamente
-                </p>
-                <a href="{% url 'paciente' %}">
-                    <button class="btnok">
-                        Ok
-                    </button>
-                </a>
-            </div>
-        </div>
+        
 
         <div class="cl">
             <div class="divtitle">
@@ -65,9 +54,19 @@
                 </div>
                 <div class="btnconfirmar">
                 <input type="hidden" name="horaInicio" id="horaInicio">
-                <button type="submit" class="btn1" onclick="mostrarModal(modal)">Confirmar</button>
+                <button class="btn1" onclick="event.preventDefault();mostrarModal(modal)">Confirmar</button>
             </div>
-            </form>
+            <div id="modal" class="hide">
+                <div>
+                    <p class="p1">
+                        Reserva agendada exitosamente
+                    </p>
+                        <button type="submit" class="btnok">
+                            Ok
+                        </button>
+                </div>
+            </div>
+        </form>
             
             </div>
         </div>
