@@ -110,7 +110,7 @@ def agendarCita(request):
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
     doctor = Trabajador.objects.get(id=1)
-    citas_doctor = Cita.objects.filter(trabajador=doctor)
+    citas_doctor = Cita.objects.filter(trabajador=doctor).order_by('fechaAtencion', 'horaInicio')
     template_name = 'estudio/agendarCita.html'
     return render(request,template_name,{'profiles':profiles,'citas_doctor':citas_doctor})
 
@@ -230,7 +230,7 @@ def cita_save(request):
         )
         cita.save()
         messages.add_message(request, messages.INFO, 'Cita ingresada con éxito')
-        return redirect('agendarCita')
+        return redirect('paciente')
 
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
