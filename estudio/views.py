@@ -181,3 +181,39 @@ from django.shortcuts import redirect
 def cerrar_sesion(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def paciente_ver(request, paciente_rut):
+    profile = Profile.objects.get(user_id=request.user.id)
+    if profile.group_id != 1:
+        messages.add_message(request, messages.INFO, 'Intenta ingresar a una área para la que no tiene permisos')
+        return redirect('check_group_main')
+    
+    paciente = get_object_or_404(Paciente, rut=paciente_rut)
+
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        nombre = request.POST.get('nombre')
+        telefono = request.POST.get('telefono')
+        sexo = request.POST.get('Sexo')
+        correo = request.POST.get('correo')
+        edad = request.POST.get('edad')
+        direccion = request.POST.get('direccion')
+        estado = request.POST.get('estado')
+
+        paciente.rut = rut
+        paciente.nombre = nombre
+        paciente.telefono = telefono
+        paciente.sexo = sexo
+        paciente.correo = correo
+        paciente.edad = edad
+        paciente.direccion = direccion
+        paciente.estado = estado
+        paciente.save()
+        
+        return redirect('paciente_ver', paciente_rut=paciente.rut)
+    else:
+        paciente_data = Paciente.objects.get(rut=paciente_rut)
+        template_name = 'estudio/paciente_ver.html'
+        
+        return render(request, template_name, {'paciente_data': paciente_data})

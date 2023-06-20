@@ -12,6 +12,8 @@ estudio_urlpatterns = [
     path('ver_agenda/<offset>/',views.ver_agenda,name="ver_agenda"),
     path('verCitas/', views.verCita, name="verCita"),
     path('cerrar-sesion/', views.cerrar_sesion, name='cerrar_sesion'),
+    path('estudio/paciente_ver/<str:paciente_rut>/', views.paciente_ver, name='paciente_ver')
+    
     ]
 
     

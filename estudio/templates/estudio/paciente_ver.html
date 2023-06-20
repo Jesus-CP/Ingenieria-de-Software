@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <title>Happy Teeth</title>
+</head>
+
+<body style="zoom:125%">
+    <div class="container">
+        <div class="cl" style="width: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <div class="divtitle">
+                <h1 class="title" >
+                    Studio Dental Happy Teeth
+                </h1>
+            </div>
+
+            <p class="pp">
+                privacy policy and terms of service
+            </p>
+        </div><!---->
+        <div style="display: flex; flex-direction: column;width: 50%;justify-content: center;">
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">       
+                <div class="logo" style="margin: 10ex; justify-content: center;">
+                    <p class="logotext">
+                        HT
+                    </p>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; flex-direction: row;">
+                    <div>
+                        <h2 width="10%" scope="col">Rut :</h2>
+                        <h2 width="12%" scope="col">Nombre :</h2>
+                        <h2 width="10%" scope="col">Telefono :</h2>
+                        <h2 width="10%" scope="col">Sexo :</h2>
+                        <h2 width="10%" scope="col">Correo :</h2>
+                        <h2 width="10%" scope="col">Edad :</h2>
+                        <h2 width="10%" scope="col">Direccion :</h2>
+                        <h2 width="10%" scope="col">Estado :</h2>
+                    </div>
+                    <div>
+                        <h2>{{ paciente_data.rut }}</h2>
+                        <h2>{{ paciente_data.nombre }}</h2>
+                        <h2>{{ paciente_data.telefono }}</h2>
+                        <h2>{{ paciente_data.Sexo }}</h2>
+                        <h2>{{ paciente_data.correo }}</h2>
+                        <h2>{{ paciente_data.edad }}</h2>
+                        <h2>{{ paciente_data.direccion }}</h2>
+                        <h2>{{ paciente_data.estado }}</h2>
+                    </div>
+                </div>   
+            </div>
+            <div style="display: flex;justify-content: center;">
+                <a href="{% url 'odontologo' %}" ><button class="btnok" >Volver</button></a>   
+            </div>
+                      
+        </div>
+</body>
+
+</html>
