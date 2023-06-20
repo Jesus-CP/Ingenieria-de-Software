@@ -109,8 +109,10 @@ def agendarCita(request):
     if profiles.group_id != 1 and profiles.group_id != 2:
         messages.add_message(request, messages.INFO, 'Intenta ingresar a una area para la que no tiene permisos')
         return redirect('check_group_main')
+    doctor = Trabajador.objects.get(id=1)
+    citas_doctor = Cita.objects.filter(trabajador=doctor)
     template_name = 'estudio/agendarCita.html'
-    return render(request,template_name,{'profiles':profiles})
+    return render(request,template_name,{'profiles':profiles,'citas_doctor':citas_doctor})
 
 @login_required
 def verCita(request):
@@ -187,7 +189,14 @@ def paciente_save(request):
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
-
+    
+def is_time_available(fechaAtencion, horaInicio):
+    citas = Cita.objects.filter(fechaAtencion=fechaAtencion, horaInicio=horaInicio)
+    if citas.exists():
+        return False
+    else:
+        return True
+    
 @login_required
 def cita_save(request):
     profile = Profile.objects.get(user_id=request.user.id)
@@ -206,7 +215,10 @@ def cita_save(request):
         if  not fechaAtencion or not horaInicio:
             messages.add_message(request, messages.INFO, 'Debes ingresar una hora y fecha para guardar')
             return redirect('agendarCita')
-
+        
+        if not is_time_available(fechaAtencion, horaInicio):
+            messages.add_message(request, messages.INFO, 'Esta hora ya está reservada')
+            return redirect('agendarCita')
 
         horaInicio = datetime.strptime(horaInicio, '%H:%M').time()
  
