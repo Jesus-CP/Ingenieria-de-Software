@@ -160,7 +160,8 @@ def cita_save(request):
     else:
         messages.add_message(request, messages.INFO, 'Error en el método de envío')
         return redirect('check_group_main')
-    
+
+@login_required    
 def verCita(request):
     profiles = Profile.objects.get(user_id=request.user.id)
     if profiles.group_id != 1 and profiles.group_id != 2:
@@ -168,13 +169,25 @@ def verCita(request):
         return redirect('check_group_main')
 
     citas_agendadas = Cita.objects.order_by('fechaAtencion','horaInicio')  # Obtener todas las citas agendadas
+    tiene_citas = True if citas_agendadas else False
 
     template_name = 'estudio/verCita.html'
     context = {
         'profiles': profiles,
-        'citas_agendadas': citas_agendadas
+        'citas_agendadas': citas_agendadas,
+        'tiene_citas': tiene_citas
     }
     return render(request, template_name, context)
+
+@login_required
+def cancelar_cita(request, cita_id):
+    cita = get_object_or_404(Cita, id=cita_id)
+    profiles = Profile.objects.get(user_id=request.user.id)
+    if profiles.group_id != 1 and profiles.group_id != 2:
+        messages.add_message(request, messages.INFO, 'Intenta cancelar una cita sin permisos suficientes')
+        return redirect('check_group_main')
+    cita.delete()
+    return redirect('verCita')
 
 from django.contrib.auth import logout
 from django.shortcuts import redirect

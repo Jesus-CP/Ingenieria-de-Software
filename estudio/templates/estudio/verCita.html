@@ -1,3 +1,4 @@
+{% if tiene_citas %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +13,16 @@
 
 <body>
 
-    <div class="container">
 
+    <div class="container">
         <div id="modalcancelar" class="hide">
+            
+            
             <div>
                 <p class="p1">
                 ¿Seguro que deseas cancelar la cita seleccionada?
                 </p>
-                <a style="text-decoration: none;" href="{% url 'paciente' %}">
+                <a id="cancelar-link" style="text-decoration: none;" href="#">
                     <button class="btnsi">
                         Si
                     </button>
@@ -28,7 +31,10 @@
                     No
                 </button>
             </div>
+            
         </div>
+
+        
 
 
         <div class="cl">
@@ -57,10 +63,13 @@
                 <table>
                     <tbody>
                         {% for cita in citas_agendadas %}
+                        
+                        <input id="cita.id{{cita.id}}" value="{{cita.id}}"  style="display: none;">
+                        
                         <tr>
                             <td class="cita">{{ cita.fechaAtencion }} {{ cita.horaInicio }}</td>
                             <td>
-                                <button class="btncancel" onclick="mostrarModal(modalcancelar)">
+                                <button class="btncancel" onclick="cita({{ cita.id }});mostrarModal(modalcancelar)">
                                     Cancelar
                                 </button>
                             </td>
@@ -71,5 +80,24 @@
         </div>
     </div>
 </body>
+<script>
+    function cita(id){
+        var citaId = document.getElementById('cita.id'+id).value;
+        var urlCancelar = "{% url 'cancelar_cita' 0 %}".replace('0', parseInt(citaId));
+        document.getElementById("cancelar-link").href = urlCancelar;
+        console.log(citaId)
+    }
+</script>
 
 </html>
+{% else %}
+<div>
+    <p class="p1">
+        No tienes citas agendadas
+    </p>
+    <a href="{% url 'paciente' %}">
+        <button class="btnok">
+            Aceptar
+        </button>
+    </a>
+</div>{% endif %}
